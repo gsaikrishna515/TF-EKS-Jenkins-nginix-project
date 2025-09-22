@@ -35,11 +35,18 @@ pipeline {
                         if (params.ACTION == 'plan') {
                             echo "Running Terraform Plan..."
                             // Jenkins now knows where to find 'terraform'
-                            sh 'pwd'
-                            sh 'cd Eks-Nginix-Setup'
-                            sh 'ls -l'
-                            sh 'terraform init -input=false'
-                            sh 'terraform plan -out=tfplan'
+                            //sh 'pwd'
+                            //sh 'cd Eks-Nginix-Setup'
+                            //sh 'ls -l'
+                            //sh 'terraform init -input=false'
+                           // sh 'terraform plan -out=tfplan'
+
+
+                            sh ''' 
+                            cd Eks-Nginix-Setup
+                            terraform init -input=false
+                            terraform plan -out=tfplan
+                            '''
                         }
                         
                         else if (params.ACTION == 'apply') {
@@ -59,7 +66,7 @@ pipeline {
                             sh 'kubectl get nodes'
                             
                             echo 'Deploying Nginx application...'
-                            sh 'kubectl apply -f nginx-app/nginx.yaml'
+                            sh 'kubectl apply -f Eks-Nginix-Setup/nginx-app/nginx.yaml'
                             sh 'sleep 30'
                             sh 'kubectl get svc nginx-service'
                         }
