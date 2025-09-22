@@ -83,7 +83,7 @@ pipeline {
                             terraform init -input=false
                             terraform plan -destroy -out=tfdestroy
                             
-                            //input 'DANGER: Proceed with Terraform Destroy? This cannot be undone.'
+                            # input 'DANGER: Proceed with Terraform Destroy? This cannot be undone.'
                             
                             terraform destroy -auto-approve
 
