@@ -35,6 +35,7 @@ pipeline {
                         if (params.ACTION == 'plan') {
                             echo "Running Terraform Plan..."
                             // Jenkins now knows where to find 'terraform'
+                            sh 'pwd'
                             sh 'cd Eks-Nginix-Setup'
                             sh 'terraform init -input=false'
                             sh 'terraform plan -out=tfplan'
