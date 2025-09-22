@@ -53,12 +53,12 @@ pipeline {
                             sh '''
                             echo "Running Terraform Apply..."
                             cd Eks-Nginix-Setup
-                            sh 'terraform init -input=false'
-                            sh 'terraform plan -out=tfplan'
+                            terraform init -input=false
+                            terraform plan -out=tfplan
                             
                             // input 'Proceed with Terraform Apply?'
                             
-                            sh 'terraform apply -auto-approve tfplan'
+                            terraform apply -auto-approve tfplan
                             
                             echo 'Configuring kubectl...'
                             
@@ -80,12 +80,12 @@ pipeline {
                             sh '''
                             cd Eks-Nginix-Setup
                             echo "Running Terraform Destroy..."
-                            sh 'terraform init -input=false'
-                            sh 'terraform plan -destroy -out=tfdestroy'
+                            terraform init -input=false
+                            terraform plan -destroy -out=tfdestroy
                             
                             //input 'DANGER: Proceed with Terraform Destroy? This cannot be undone.'
                             
-                            sh 'terraform destroy -auto-approve'
+                            terraform destroy -auto-approve
 
                             '''
                         }
