@@ -65,8 +65,11 @@ pipeline {
                             '''
                             
                             sh '''
-                                CLUSTER_NAME=$(terraform output -raw cluster_name)
+                                # CLUSTER_NAME=$(terraform output -raw cluster_name)
+                                # aws eks update-kubeconfig --region ${AWS_REGION} --name ${CLUSTER_NAME}
+                                CLUSTER_NAME=$(terraform -chdir=infra output -raw cluster_name)
                                 aws eks update-kubeconfig --region ${AWS_REGION} --name ${CLUSTER_NAME}
+                                
                             '''
                             sh 'kubectl get nodes'
                             
