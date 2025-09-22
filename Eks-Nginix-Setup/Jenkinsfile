@@ -37,6 +37,7 @@ pipeline {
                             // Jenkins now knows where to find 'terraform'
                             sh 'pwd'
                             sh 'cd Eks-Nginix-Setup'
+                            sh 'pwd'
                             sh 'terraform init -input=false'
                             sh 'terraform plan -out=tfplan'
                         }
