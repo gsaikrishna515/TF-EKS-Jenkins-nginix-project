@@ -56,7 +56,7 @@ pipeline {
                             terraform init -input=false
                             terraform plan -out=tfplan
                             
-                            // input 'Proceed with Terraform Apply?'
+                            # input 'Proceed with Terraform Apply?'
                             
                             terraform apply -auto-approve tfplan
                             
@@ -77,13 +77,12 @@ pipeline {
                         }
                         
                         else if (params.ACTION == 'destroy') {
+                            // input 'DANGER: Proceed with Terraform Destroy? This cannot be undone.'
                             sh '''
                             cd Eks-Nginix-Setup
                             echo "Running Terraform Destroy..."
                             terraform init -input=false
                             terraform plan -destroy -out=tfdestroy
-                            
-                            # input 'DANGER: Proceed with Terraform Destroy? This cannot be undone.'
                             
                             terraform destroy -auto-approve
 
